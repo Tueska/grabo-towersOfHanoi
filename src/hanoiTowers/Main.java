@@ -8,10 +8,15 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private GameController gameControl;
+    private MenuController menuControl;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        GameController game = new GameController(primaryStage);
-        MenuController menu = new MenuController(primaryStage, game);
+        FXMLLoader loader = new FXMLLoader();
+        Parent menuRoot = loader.load(Scenes.SCENE_MENU);
+        primaryStage.setTitle("GRABO - Towers of Hanoi");
+        primaryStage.setScene(new Scene(menuRoot));
+        primaryStage.show();
 
     }
 

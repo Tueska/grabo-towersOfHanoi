@@ -33,10 +33,21 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="diskLabel" text="3 Disks" GridPane.columnIndex="1">
+            <Label fx:id="diskLabel" text="3" GridPane.columnIndex="1">
                <font>
-                  <Font size="29.0" />
+                  <Font size="32.0" />
                </font>
+            </Label>
+            <Label text="Disks" GridPane.columnIndex="1">
+               <font>
+                  <Font size="32.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
             </Label>
             <GridPane>
               <columnConstraints>

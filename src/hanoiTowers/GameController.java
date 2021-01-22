@@ -23,18 +23,6 @@ public class GameController {
     Stage game;
     Scene content;
 
-    public GameController() {
-        super();
-    }
-
-    public GameController(Stage game) throws IOException {
-        super();
-
-        Parent root = FXMLLoader.load(getClass().getResource("hanoiGame.fxml"));
-        this.content = new Scene(root);
-        this.game = game;
-    }
-
     public void startGame(Stage gameStage) {
         gameStage.setScene(this.content);
     }
