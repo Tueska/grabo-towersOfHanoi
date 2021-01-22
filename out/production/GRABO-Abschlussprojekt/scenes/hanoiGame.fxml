@@ -33,7 +33,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                              <Button fx:id="resetButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Reset" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                              <Button fx:id="resetButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#resetButtonOnClick" text="Reset" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
                               <Label text="Moves: " GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                               <Label fx:id="moveCounter" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                            <padding>
