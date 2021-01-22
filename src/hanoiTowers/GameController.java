@@ -1,16 +1,14 @@
 package hanoiTowers;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
@@ -20,13 +18,25 @@ public class GameController {
     @FXML
     private VBox towerLeft, towerCenter, towerRight;
     @FXML
-    private Button resetButton;
-    @FXML
     private Label moveCounter;
 
     private int moves = 0;
     private Rectangle selected = null;
     private boolean gameRunning = true;
+
+    enum Colour {
+        BROWN(Color.BROWN), TURQUOISE(Color.TURQUOISE), GREEN(Color.GREEN), PINK(Color.PINK), GOLD(Color.GOLD),
+        INDIANRED(Color.INDIANRED), PURPLE(Color.PURPLE), ORANGE(Color.ORANGE);
+
+        Color colourCode;
+        Colour(Color color) {
+            this.colourCode = color;
+        }
+
+        public Color getColor() {
+            return this.colourCode;
+        }
+    }
 
     public void initialize() {
         startGame();
@@ -36,6 +46,7 @@ public class GameController {
         int numberDisks = DiskCountModel.getInstance().getNumberDisksValue();
         for(int i = 0; i < numberDisks; i++) {
             Rectangle rec = new Rectangle(30 + (30 * i), 30);
+            rec.setFill(Colour.values()[i].getColor());
             towerLeft.getChildren().add(i, rec);
         }
     }
@@ -54,18 +65,21 @@ public class GameController {
                 return;
             }
             this.selected = (Rectangle)tower.getChildren().get(0);
+            VBox.setMargin(this.selected, new Insets(0, 0, 15, 0));
             this.selected.setOpacity(0.75);
         } else {
             if(!tower.getChildren().isEmpty()) {
                 Rectangle tempRec = (Rectangle)tower.getChildren().get(0);
                 if(tempRec.getWidth() <= this.selected.getWidth()) {
                     this.selected.setOpacity(1);
+                    VBox.setMargin(this.selected, new Insets(0, 0, 0, 0));
                     this.selected = null;
                     return;
                 }
             }
 
             tower.getChildren().add(0, this.selected);
+            VBox.setMargin(this.selected, new Insets(0, 0, 0, 0));
             this.selected.setOpacity(1);
             incrementMoveCounter();
             this.selected = null;
