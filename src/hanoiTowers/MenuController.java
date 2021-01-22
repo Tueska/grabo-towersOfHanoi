@@ -1,15 +1,15 @@
 package hanoiTowers;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.NumberStringConverter;
+
+import java.io.IOException;
 
 public class MenuController {
 
@@ -36,8 +36,10 @@ public class MenuController {
     }
 
     public void exitGameButton(MouseEvent mouseEvent) {
+        System.exit(0);
     }
 
-    public void startGameButton(MouseEvent mouseEvent) {
+    public void startGameButton(MouseEvent mouseEvent) throws IOException {
+        ScenesModel.STAGE.setScene(new Scene(new FXMLLoader().load(getClass().getResource("/scenes/hanoiGame.fxml"))));
     }
 }
