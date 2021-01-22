@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -30,7 +32,8 @@ public class GameController {
     private void startGame() {
         int numberDisks = DiskCountModel.getInstance().getNumberDisksValue();
         for(int i = 0; i < numberDisks; i++) {
-            towerLeft.getChildren().add(i, new Rectangle(30 + (20 * i), 30));
+            Rectangle rec = new Rectangle(30 + (20 * i), 30);
+            towerLeft.getChildren().add(i, rec);
         }
     }
 
@@ -56,6 +59,10 @@ public class GameController {
             incrementMoveCounter();
             this.selected = null;
         }
+    }
+
+    private void checkWon() {
+
     }
 
     public void towerLeftOnClick(MouseEvent mouseEvent) {

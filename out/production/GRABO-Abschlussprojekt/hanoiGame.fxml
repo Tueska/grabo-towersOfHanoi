@@ -66,9 +66,9 @@
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="280.0" stroke="BLACK" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="280.0" stroke="BLACK" strokeType="INSIDE" width="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="280.0" stroke="BLACK" strokeType="INSIDE" width="10.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                  <VBox fx:id="towerLeft" alignment="BOTTOM_CENTER" onMouseClicked="#towerLeftOnClick" prefHeight="200.0" prefWidth="100.0" />
-                  <VBox fx:id="towerCenter" alignment="BOTTOM_CENTER" onMouseClicked="#towerCenterOnClick" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" />
-                  <VBox fx:id="towerRight" alignment="BOTTOM_CENTER" onMouseClicked="#towerRightOnClick" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" />
+                  <VBox fx:id="towerLeft" alignment="BOTTOM_CENTER" onMouseClicked="#towerLeftOnClick" prefHeight="200.0" prefWidth="100.0" spacing="5.0" />
+                  <VBox fx:id="towerCenter" alignment="BOTTOM_CENTER" onMouseClicked="#towerCenterOnClick" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" />
+                  <VBox fx:id="towerRight" alignment="BOTTOM_CENTER" onMouseClicked="#towerRightOnClick" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" />
                     </children>
                 </GridPane>
             </center>
