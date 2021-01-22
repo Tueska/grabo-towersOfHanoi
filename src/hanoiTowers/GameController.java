@@ -21,6 +21,7 @@ public class GameController {
     GridPane gameScreen;
 
     Stage game;
+    Scene content;
 
     public GameController() {
         super();
@@ -28,17 +29,14 @@ public class GameController {
 
     public GameController(Stage game) throws IOException {
         super();
-        Parent root = FXMLLoader.load(getClass().getResource("hanoiGame.fxml"));
-        game.setTitle("GRABO - Towers of Hanoi");
-        game.setScene(new Scene(root));
-        game.show();
 
+        Parent root = FXMLLoader.load(getClass().getResource("hanoiGame.fxml"));
+        this.content = new Scene(root);
         this.game = game;
-        this.startGame();
     }
 
-    private void startGame() {
-
+    public void startGame(Stage gameStage) {
+        gameStage.setScene(this.content);
     }
 
     private void cleanupGame() {

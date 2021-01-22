@@ -11,6 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         GameController game = new GameController(primaryStage);
+        MenuController menu = new MenuController(primaryStage, game);
+
     }
 
 
