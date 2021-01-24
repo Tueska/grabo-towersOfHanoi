@@ -1,4 +1,4 @@
-package hanoiTowers;
+package models;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

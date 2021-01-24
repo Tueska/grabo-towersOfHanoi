@@ -1,7 +1,7 @@
-package hanoiTowers;
+package models;
 
 import javafx.stage.Stage;
 
 public class ScenesModel {
-    protected static Stage STAGE;
+    public static Stage STAGE;
 }

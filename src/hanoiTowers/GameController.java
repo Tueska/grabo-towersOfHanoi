@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import models.DiskCountModel;
+import models.ScenesModel;
 
 import java.io.IOException;
 
