@@ -11,7 +11,7 @@ public class DiskCountModel {
         return instance;
     }
 
-    private IntegerProperty numberDisks;
+    private final IntegerProperty numberDisks;
 
     public DiskCountModel() {
         this.numberDisks = new SimpleIntegerProperty(3);

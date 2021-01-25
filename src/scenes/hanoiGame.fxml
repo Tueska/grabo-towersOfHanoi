@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanoiTowers.GameController">
+<GridPane alignment="center" hgap="10" style="-fx-background-color: #2c2f33;" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanoiTowers.GameController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -32,7 +32,7 @@
           <RowConstraints maxHeight="312.0" minHeight="10.0" prefHeight="301.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-                <ToolBar>
+                <ToolBar style="-fx-background-color: #23272a;">
                     <items>
                   <GridPane maxWidth="-Infinity" prefHeight="30.0" prefWidth="788.0">
                     <columnConstraints>
@@ -44,8 +44,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                              <Button fx:id="resetButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#resetButtonOnClick" text="Reset" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                        <Button fx:id="menuButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#menuGameButton" text="Menu" textAlignment="CENTER" />
+                              <Button fx:id="resetButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#resetButtonOnClick" style="-fx-background-color: #D84040;" text="Reset" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                        <Button fx:id="menuButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#menuGameButton" style="-fx-background-color: #7289DA;" text="Menu" textAlignment="CENTER" textFill="WHITE" />
                         <GridPane GridPane.columnIndex="1">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -56,23 +56,23 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                                    <Label text="Moves: " GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                    <Label fx:id="moveCounter" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                    <Label text="Moves: " textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                    <Label fx:id="moveCounter" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                  <padding>
                                     <Insets left="70.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="timeLabel" text="Time:" visible="false" />
-                              <Label fx:id="timeCountLabel" text="0" visible="false">
+                              <Label fx:id="timeLabel" text="Time:" textFill="WHITE" visible="false" />
+                              <Label fx:id="timeCountLabel" text="0" textFill="WHITE" visible="false">
                                  <padding>
                                     <Insets left="40.0" />
                                  </padding></Label>
-                              <Label fx:id="maxMovesLabel" text="Max. Moves:" visible="false" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                              <Label fx:id="maxMovesLabel" text="Max. Moves:" textFill="WHITE" visible="false" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                                  <padding>
                                     <Insets right="50.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="maxMovesCounterLabel" text="0" textAlignment="RIGHT" visible="false" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                              <Label fx:id="maxMovesCounterLabel" text="0" textAlignment="RIGHT" textFill="WHITE" visible="false" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
                            </children>
                         </GridPane>
                      </children>
@@ -92,9 +92,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="280.0" stroke="BLACK" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="280.0" stroke="BLACK" strokeType="INSIDE" width="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="280.0" stroke="BLACK" strokeType="INSIDE" width="10.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#99aab5" height="250.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10; -fx-arc-width: 10;" width="10.0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#99aab5" height="250.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10; -fx-arc-width: 10;" width="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#99aab5" height="250.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10; -fx-arc-width: 10;" width="10.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                   <VBox fx:id="towerLeft" alignment="BOTTOM_CENTER" onMouseClicked="#towerLeftOnClick" prefHeight="200.0" prefWidth="100.0">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
@@ -112,7 +112,7 @@
                   </VBox>
                     </children>
                 </GridPane>
-            <Label fx:id="infoLabel" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="infoLabel" textFill="WHITE" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="32.0" />
                </font>

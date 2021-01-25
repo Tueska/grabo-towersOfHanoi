@@ -2,7 +2,6 @@ package models;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 public class AdditionalOptionsModel {
     private static AdditionalOptionsModel instance;
@@ -12,8 +11,8 @@ public class AdditionalOptionsModel {
         return instance;
     }
 
-    private BooleanProperty hardmode;
-    private BooleanProperty timed;
+    private final BooleanProperty hardmode;
+    private final BooleanProperty timed;
 
     public AdditionalOptionsModel() {
         this.hardmode = new SimpleBooleanProperty(false);

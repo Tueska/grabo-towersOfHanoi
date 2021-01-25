@@ -28,19 +28,19 @@ public class GameController {
     private Rectangle selected = null;
     private boolean gameRunning = true;
 
-    enum Colour {
-        BROWN(Color.BROWN), TURQUOISE(Color.TURQUOISE), GREEN(Color.GREEN), PINK(Color.PINK), GOLD(Color.GOLD),
-        INDIANRED(Color.INDIANRED), PURPLE(Color.PURPLE), ORANGE(Color.ORANGE);
-
-        Color colourCode;
-        Colour(Color color) {
-            this.colourCode = color;
-        }
-
-        public Color getColor() {
-            return this.colourCode;
-        }
-    }
+//    enum Colour {
+//        BROWN(Color.BROWN), TURQUOISE(Color.TURQUOISE), GREEN(Color.GREEN), PINK(Color.PINK), GOLD(Color.GOLD),
+//        INDIANRED(Color.INDIANRED), PURPLE(Color.PURPLE), ORANGE(Color.ORANGE);
+//
+//        Color colourCode;
+//        Colour(Color color) {
+//            this.colourCode = color;
+//        }
+//
+//        public Color getColor() {
+//            return this.colourCode;
+//        }
+//    }
 
     public void initialize() {
         this.startGame();
@@ -59,8 +59,12 @@ public class GameController {
         }
         int numberDisks = DiskCountModel.getInstance().getNumberDisksValue();
         for(int i = 0; i < numberDisks; i++) {
-            Rectangle rec = new Rectangle(30 + (30 * i), 30);
-            rec.setFill(Colour.values()[i].getColor());
+            Rectangle rec = new Rectangle(30 + (30 * i), 25);
+            rec.setFill(Color.valueOf("#7289DA"));
+            rec.arcHeightProperty().set(15);
+            rec.arcWidthProperty().set(15);
+            rec.setStroke(Color.BLACK);
+            rec.setStrokeWidth(2.5);
             this.towerLeft.getChildren().add(i, rec);
         }
     }
@@ -71,7 +75,7 @@ public class GameController {
     }
 
     private void handleClickLogic(VBox tower) {
-        if(this.gameRunning == false) {
+        if(!this.gameRunning) {
             return;
         }
         if(this.moves >= this.maxMoves && AdditionalOptionsModel.getInstance().isHardmode()) {
@@ -85,6 +89,7 @@ public class GameController {
             }
             this.selected = (Rectangle)tower.getChildren().get(0);
             VBox.setMargin(this.selected, new Insets(0, 0, 15, 0));
+            this.selected.setStroke(Color.WHITE);
             this.selected.setOpacity(0.75);
         } else {
             if(!tower.getChildren().isEmpty()) {
@@ -92,6 +97,7 @@ public class GameController {
                 if(tempRec.getWidth() <= this.selected.getWidth()) {
                     this.selected.setOpacity(1);
                     VBox.setMargin(this.selected, new Insets(0, 0, 0, 0));
+                    this.selected.setStroke(Color.BLACK);
                     this.selected = null;
                     return;
                 }
@@ -99,6 +105,7 @@ public class GameController {
 
             tower.getChildren().add(0, this.selected);
             VBox.setMargin(this.selected, new Insets(0, 0, 0, 0));
+            this.selected.setStroke(Color.BLACK);
             this.selected.setOpacity(1);
             this.incrementMoveCounter();
             this.selected = null;
