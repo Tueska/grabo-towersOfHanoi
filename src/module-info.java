@@ -4,4 +4,6 @@ module GRABO.Abschlussprojekt {
     requires javafx.graphics;
 
     opens hanoiTowers;
+
+    exports hanoiTowers;
 }

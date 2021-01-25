@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.NumberStringConverter;
+import models.AdditionalOptionsModel;
 import models.DiskCountModel;
 import models.ScenesModel;
 
@@ -21,10 +23,14 @@ public class MenuController {
     Slider diskSlider;
     @FXML
     Label diskLabel;
+    @FXML
+    CheckBox checkboxHard, checkboxTime;
 
     public void initialize() {
         this.diskSlider.valueProperty().bindBidirectional(DiskCountModel.getInstance().getNumberDisks());
         this.diskLabel.textProperty().bindBidirectional(DiskCountModel.getInstance().getNumberDisks(), new NumberStringConverter());
+        this.checkboxHard.selectedProperty().bindBidirectional(AdditionalOptionsModel.getInstance().getHardmode());
+        this.checkboxTime.selectedProperty().bindBidirectional(AdditionalOptionsModel.getInstance().getTimed());
     }
 
     public void decrementMouseButtonClicked(MouseEvent mouseEvent) {

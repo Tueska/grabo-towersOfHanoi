@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import models.AdditionalOptionsModel;
 import models.DiskCountModel;
 import models.ScenesModel;
 
@@ -20,7 +21,7 @@ public class GameController {
     @FXML
     private VBox towerLeft, towerCenter, towerRight;
     @FXML
-    private Label moveCounter;
+    private Label moveCounter, maxMovesLabel, maxMovesCounterLabel, timeLabel, timeCountLabel;
 
     private int moves = 0;
     private Rectangle selected = null;
@@ -45,6 +46,14 @@ public class GameController {
     }
 
     private void startGame() {
+        if(AdditionalOptionsModel.getInstance().isHardmode()) {
+            maxMovesCounterLabel.setVisible(true);
+            maxMovesLabel.setVisible(true);
+        }
+        if(AdditionalOptionsModel.getInstance().isTimed()) {
+            timeCountLabel.setVisible(true);
+            timeLabel.setVisible(true);
+        }
         int numberDisks = DiskCountModel.getInstance().getNumberDisksValue();
         for(int i = 0; i < numberDisks; i++) {
             Rectangle rec = new Rectangle(30 + (30 * i), 30);
