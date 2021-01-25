@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanoiTowers.GameController">
     <columnConstraints>
@@ -20,9 +21,18 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <BorderPane prefHeight="400.0" prefWidth="800.0">
-            <top>
-                <ToolBar BorderPane.alignment="CENTER">
+        <BorderPane prefHeight="400.0" prefWidth="800.0" />
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="305.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="312.0" minHeight="10.0" prefHeight="301.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+                <ToolBar>
                     <items>
                   <GridPane maxWidth="-Infinity" prefHeight="30.0" prefWidth="788.0">
                     <columnConstraints>
@@ -71,13 +81,8 @@
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
-                    <BorderPane.margin>
-                        <Insets />
-                    </BorderPane.margin>
                 </ToolBar>
-            </top>
-            <center>
-                <GridPane fx:id="gameScreen" BorderPane.alignment="CENTER">
+                <GridPane fx:id="gameScreen" GridPane.rowIndex="2">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -93,18 +98,26 @@
                   <VBox fx:id="towerLeft" alignment="BOTTOM_CENTER" onMouseClicked="#towerLeftOnClick" prefHeight="200.0" prefWidth="100.0">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
-                     </cursor></VBox>
+                     </cursor>
+                  </VBox>
                   <VBox fx:id="towerCenter" alignment="BOTTOM_CENTER" onMouseClicked="#towerCenterOnClick" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
-                     </cursor></VBox>
+                     </cursor>
+                  </VBox>
                   <VBox fx:id="towerRight" alignment="BOTTOM_CENTER" onMouseClicked="#towerRightOnClick" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
-                     </cursor></VBox>
+                     </cursor>
+                  </VBox>
                     </children>
                 </GridPane>
-            </center>
-        </BorderPane>
+            <Label fx:id="infoLabel" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
     </children>
 </GridPane>

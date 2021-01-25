@@ -21,9 +21,10 @@ public class GameController {
     @FXML
     private VBox towerLeft, towerCenter, towerRight;
     @FXML
-    private Label moveCounter, maxMovesLabel, maxMovesCounterLabel, timeLabel, timeCountLabel;
+    private Label moveCounter, maxMovesLabel, maxMovesCounterLabel, timeLabel, timeCountLabel, infoLabel;
 
     private int moves = 0;
+    private int maxMoves;
     private Rectangle selected = null;
     private boolean gameRunning = true;
 
@@ -42,33 +43,40 @@ public class GameController {
     }
 
     public void initialize() {
-        startGame();
+        this.startGame();
     }
 
     private void startGame() {
         if(AdditionalOptionsModel.getInstance().isHardmode()) {
-            maxMovesCounterLabel.setVisible(true);
-            maxMovesLabel.setVisible(true);
+            this.maxMovesCounterLabel.setVisible(true);
+            this.maxMovesLabel.setVisible(true);
+            this.maxMoves = (int)Math.pow(2, DiskCountModel.getInstance().getNumberDisksValue()) - 1;
+            this.maxMovesCounterLabel.setText(Integer.toString(maxMoves));
         }
         if(AdditionalOptionsModel.getInstance().isTimed()) {
-            timeCountLabel.setVisible(true);
-            timeLabel.setVisible(true);
+            this.timeCountLabel.setVisible(true);
+            this.timeLabel.setVisible(true);
         }
         int numberDisks = DiskCountModel.getInstance().getNumberDisksValue();
         for(int i = 0; i < numberDisks; i++) {
             Rectangle rec = new Rectangle(30 + (30 * i), 30);
             rec.setFill(Colour.values()[i].getColor());
-            towerLeft.getChildren().add(i, rec);
+            this.towerLeft.getChildren().add(i, rec);
         }
     }
 
     private void incrementMoveCounter() {
         this.moves++;
-        moveCounter.textProperty().set(Integer.toString(this.moves));
+        this.moveCounter.textProperty().set(Integer.toString(this.moves));
     }
 
     private void handleClickLogic(VBox tower) {
         if(this.gameRunning == false) {
+            return;
+        }
+        if(this.moves >= this.maxMoves && AdditionalOptionsModel.getInstance().isHardmode()) {
+            this.setInfotext("Too many moves!");
+            this.gameRunning = false;
             return;
         }
         if(this.selected == null) {
@@ -92,33 +100,35 @@ public class GameController {
             tower.getChildren().add(0, this.selected);
             VBox.setMargin(this.selected, new Insets(0, 0, 0, 0));
             this.selected.setOpacity(1);
-            incrementMoveCounter();
+            this.incrementMoveCounter();
             this.selected = null;
         }
         checkWon();
     }
 
+    private void setInfotext(String infoText) {
+        this.infoLabel.setText(infoText);
+        this.infoLabel.setVisible(true);
+    }
+
     private void checkWon() {
         int numberDisks = DiskCountModel.getInstance().getNumberDisksValue();
-        if(towerRight.getChildren().size() == numberDisks) {
-            Label wellDone = new Label("Well done :)");
-            wellDone.setFont(Font.font("System", 32));
-            towerCenter.setAlignment(Pos.TOP_CENTER);
-            towerCenter.getChildren().add(wellDone);
+        if(this.towerRight.getChildren().size() == numberDisks) {
+            setInfotext("Well done! :)");
             this.gameRunning = false;
         }
     }
 
     public void towerLeftOnClick(MouseEvent mouseEvent) {
-        handleClickLogic(towerLeft);
+        this.handleClickLogic(towerLeft);
     }
 
     public void towerCenterOnClick(MouseEvent mouseEvent) {
-        handleClickLogic(towerCenter);
+        this.handleClickLogic(towerCenter);
     }
 
     public void towerRightOnClick(MouseEvent mouseEvent) {
-        handleClickLogic(towerRight);
+        this.handleClickLogic(towerRight);
     }
 
     public void menuGameButton(MouseEvent mouseEvent) throws IOException {
