@@ -1,5 +1,10 @@
 package hanoiTowers;
 
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -25,22 +30,11 @@ public class GameController {
     private int maxMoves;
     private Rectangle selected = null;
     private boolean gameRunning = true;
-
-//    enum Colour {
-//        BROWN(Color.BROWN), TURQUOISE(Color.TURQUOISE), GREEN(Color.GREEN), PINK(Color.PINK), GOLD(Color.GOLD),
-//        INDIANRED(Color.INDIANRED), PURPLE(Color.PURPLE), ORANGE(Color.ORANGE);
-//
-//        Color colourCode;
-//        Colour(Color color) {
-//            this.colourCode = color;
-//        }
-//
-//        public Color getColor() {
-//            return this.colourCode;
-//        }
-//    }
+    private LongProperty timerProperty;
 
     public void initialize() {
+        this.timerProperty = new SimpleLongProperty();
+        this.timeCountLabel.textProperty().bind(Bindings.concat(timerProperty.divide(1000), "s"));
         this.startGame();
     }
 
@@ -54,7 +48,31 @@ public class GameController {
         if(AdditionalOptionsModel.getInstance().isTimed()) {
             this.timeCountLabel.setVisible(true);
             this.timeLabel.setVisible(true);
+
+            Task<Void> timerTask = new Task<>() {
+                @Override
+                protected Void call() throws Exception {
+                    long startTime = System.currentTimeMillis();
+                    while (gameRunning) {
+                        if (isCancelled()) {
+                            break;
+                        }
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                timerProperty.setValue(System.currentTimeMillis() - startTime);
+                            }
+                        });
+                        Thread.sleep(1000);
+                    }
+                    return null;
+                }
+            };
+            Thread timerThread = new Thread(timerTask);
+            timerThread.setDaemon(true);
+            timerThread.start();
         }
+
         int numberDisks = DiskCountModel.getInstance().getNumberDisksValue();
         for(int i = 0; i < numberDisks; i++) {
             Rectangle rec = new Rectangle(30 + (30 * i), 25);
@@ -143,4 +161,5 @@ public class GameController {
     public void resetButtonOnClick(MouseEvent mouseEvent) throws IOException {
         ScenesModel.STAGE.setScene(new Scene(new FXMLLoader().load(getClass().getResource("/scenes/hanoiGame.fxml"))));
     }
+
 }
