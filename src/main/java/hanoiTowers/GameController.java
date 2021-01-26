@@ -33,22 +33,27 @@ public class GameController {
     private LongProperty timerProperty;
 
     public void initialize() {
+        // Binding Timer for displaying time in seconds
         this.timerProperty = new SimpleLongProperty();
         this.timeCountLabel.textProperty().bind(Bindings.concat(timerProperty.divide(1000), "s"));
         this.startGame();
     }
 
     private void startGame() {
+        // Check for Hardmode
         if(AdditionalOptionsModel.getInstance().isHardmode()) {
+            // Enable that it's only possible to win the game using the minimal
+            // amount of moves required to solve the puzzle
             this.maxMovesCounterLabel.setVisible(true);
             this.maxMovesLabel.setVisible(true);
             this.maxMoves = (int)Math.pow(2, DiskCountModel.getInstance().getNumberDisksValue()) - 1;
             this.maxMovesCounterLabel.setText(Integer.toString(maxMoves));
         }
+        // Check for Timed mode
         if(AdditionalOptionsModel.getInstance().isTimed()) {
             this.timeCountLabel.setVisible(true);
             this.timeLabel.setVisible(true);
-
+            // Creating Task so that the Timer can display the delta time
             Task<Void> timerTask = new Task<>() {
                 @Override
                 protected Void call() throws Exception {
@@ -57,6 +62,7 @@ public class GameController {
                         if (isCancelled()) {
                             break;
                         }
+                        // .runLater seems to be required in JavaFX 11, otherwise it won't properly run.
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
@@ -68,14 +74,16 @@ public class GameController {
                     return null;
                 }
             };
+            // Creating new Thread with the above written Task, setting Daemon for proper exiting
             Thread timerThread = new Thread(timerTask);
             timerThread.setDaemon(true);
             timerThread.start();
         }
-
+        // Filling the Game with proper amount of disks select in the Main Menu
         int numberDisks = DiskCountModel.getInstance().getNumberDisksValue();
         for(int i = 0; i < numberDisks; i++) {
             Rectangle rec = new Rectangle(30 + (30 * i), 25);
+            // Styling of the new Rectangle
             rec.setFill(Color.valueOf("#7289DA"));
             rec.arcHeightProperty().set(15);
             rec.arcWidthProperty().set(15);
@@ -94,37 +102,42 @@ public class GameController {
         if(!this.gameRunning) {
             return;
         }
+        // Hardmode Check -> Ends the game when too many moves are made.
         if(this.moves >= this.maxMoves && AdditionalOptionsModel.getInstance().isHardmode()) {
             this.setInfotext("Too many moves!");
             this.gameRunning = false;
             return;
         }
+        // If no Disk is selected
         if(this.selected == null) {
             if(tower.getChildren().isEmpty()) {
                 return;
             }
+            // Let Disk float, set transparent and outline it with different colour
             this.selected = (Rectangle)tower.getChildren().get(0);
             VBox.setMargin(this.selected, new Insets(0, 0, 15, 0));
             this.selected.setStroke(Color.WHITE);
             this.selected.setOpacity(0.75);
         } else {
+            // Disk is selected and Tower is not empty
             if(!tower.getChildren().isEmpty()) {
                 Rectangle tempRec = (Rectangle)tower.getChildren().get(0);
+                // If Disk at top of tower is smaller than the selected disk the move is cancelled.
                 if(tempRec.getWidth() <= this.selected.getWidth()) {
-                    this.selected.setOpacity(1);
                     VBox.setMargin(this.selected, new Insets(0, 0, 0, 0));
                     this.selected.setStroke(Color.BLACK);
+                    this.selected.setOpacity(1);
                     this.selected = null;
                     return;
                 }
             }
-
+            // Add Selected disk at the top of the tower
             tower.getChildren().add(0, this.selected);
             VBox.setMargin(this.selected, new Insets(0, 0, 0, 0));
             this.selected.setStroke(Color.BLACK);
             this.selected.setOpacity(1);
-            this.incrementMoveCounter();
             this.selected = null;
+            this.incrementMoveCounter();
         }
         checkWon();
     }

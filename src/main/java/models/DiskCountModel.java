@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class DiskCountModel {
+    // Static Instance so that the number of disks can be accessed everywhere
     private static DiskCountModel instance;
 
     public static DiskCountModel getInstance() {

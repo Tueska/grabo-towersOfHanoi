@@ -12,6 +12,7 @@ public class MainLauncher extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent menuRoot = FXMLLoader.load(getClass().getResource("/scenes/startScreen.fxml"));
+        // Importing Stage to static StageModel for easy switching between scenes
         ScenesModel.STAGE = primaryStage;
         primaryStage.setTitle("GRABO - Towers of Hanoi");
         primaryStage.setScene(new Scene(menuRoot));

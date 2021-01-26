@@ -4,6 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 public class AdditionalOptionsModel {
+    // Static Instance so that AdditionalOptionsModel can be accessed everywhere
     private static AdditionalOptionsModel instance;
 
     public static AdditionalOptionsModel getInstance() {

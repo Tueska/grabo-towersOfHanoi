@@ -27,6 +27,7 @@ public class MenuController {
     CheckBox checkboxHard, checkboxTime;
 
     public void initialize() {
+        // Property Binding of number of disks and the checkboxes timed and hardmode
         this.diskSlider.valueProperty().bindBidirectional(DiskCountModel.getInstance().getNumberDisks());
         this.diskLabel.textProperty().bindBidirectional(DiskCountModel.getInstance().getNumberDisks(), new NumberStringConverter());
         this.checkboxHard.selectedProperty().bindBidirectional(AdditionalOptionsModel.getInstance().getHardmode());
@@ -48,6 +49,7 @@ public class MenuController {
     }
 
     public void startGameButton(MouseEvent mouseEvent) throws IOException {
+        // Switching Scene, again using static SceneModel Stage for easier switching
         ScenesModel.STAGE.setScene(new Scene(new FXMLLoader().load(getClass().getResource("/scenes/hanoiGame.fxml"))));
     }
 }
