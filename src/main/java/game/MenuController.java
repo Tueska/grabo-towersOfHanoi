@@ -1,4 +1,4 @@
-package hanoiTowers;
+package game;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,6 +50,6 @@ public class MenuController {
 
     public void startGameButton(MouseEvent mouseEvent) throws IOException {
         // Switching Scene, again using static SceneModel Stage for easier switching
-        ScenesModel.STAGE.setScene(new Scene(new FXMLLoader().load(getClass().getResource("/scenes/hanoiGame.fxml"))));
+        ScenesModel.STAGE.setScene(new Scene(new FXMLLoader().load(getClass().getResource("/hanoiGame.fxml"))));
     }
 }

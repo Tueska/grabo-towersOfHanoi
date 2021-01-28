@@ -1,4 +1,4 @@
-package hanoiTowers;
+package game;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ public class MainLauncher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent menuRoot = FXMLLoader.load(getClass().getResource("/scenes/startScreen.fxml"));
+        Parent menuRoot = FXMLLoader.load(getClass().getResource("/startScreen.fxml"));
         // Importing Stage to static StageModel for easy switching between scenes
         ScenesModel.STAGE = primaryStage;
         primaryStage.setTitle("GRABO - Towers of Hanoi");

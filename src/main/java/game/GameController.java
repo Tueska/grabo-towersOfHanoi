@@ -1,4 +1,4 @@
-package hanoiTowers;
+package game;
 
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -62,7 +62,7 @@ public class GameController {
                         if (isCancelled()) {
                             break;
                         }
-                        // .runLater seems to be required in JavaFX 11, otherwise it won't properly run.
+                        // .runLater seems to be required in order to run properly.
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
@@ -168,11 +168,11 @@ public class GameController {
     }
 
     public void menuGameButton(MouseEvent mouseEvent) throws IOException {
-        ScenesModel.STAGE.setScene(new Scene(new FXMLLoader().load(getClass().getResource("/scenes/startScreen.fxml"))));
+        ScenesModel.STAGE.setScene(new Scene(new FXMLLoader().load(getClass().getResource("/startScreen.fxml"))));
     }
 
     public void resetButtonOnClick(MouseEvent mouseEvent) throws IOException {
-        ScenesModel.STAGE.setScene(new Scene(new FXMLLoader().load(getClass().getResource("/scenes/hanoiGame.fxml"))));
+        ScenesModel.STAGE.setScene(new Scene(new FXMLLoader().load(getClass().getResource("/hanoiGame.fxml"))));
     }
 
 }
